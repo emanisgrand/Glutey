@@ -1,0 +1,270 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4k76udx15n7k"]
+
+[ext_resource type="Script" path="res://scripts/set_entry_screen.gd" id="1_241is"]
+[ext_resource type="Texture2D" uid="uid://ho3uglg4h38r" path="res://assets/textures/ui/weights-icon.svg" id="1_grxgu"]
+[ext_resource type="Texture2D" uid="uid://dih62sh4pgbra" path="res://assets/textures/ui/plus-icon.svg" id="2_srrsn"]
+[ext_resource type="Texture2D" uid="uid://cpow7pry8jclp" path="res://assets/textures/ui/minus-icon.svg" id="3_hm20u"]
+[ext_resource type="Texture2D" uid="uid://eq3lmrn6yukt" path="res://assets/textures/ui/reps-icon.svg" id="4_aukyj"]
+[ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="5_7wk5r"]
+[ext_resource type="Texture2D" uid="uid://cjniayudda0bx" path="res://assets/textures/ui/red-button-isolate-backbround-3d-render-png.webp" id="5_qyvht"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_funbc"]
+line_spacing = 3.035
+font_size = 56
+font_color = Color(0.151444, 0.818638, 0.992083, 1)
+outline_size = 15
+outline_color = Color(1.10701e-06, 0.665517, 0.147348, 1)
+shadow_size = 31
+shadow_color = Color(0.607843, 0.466667, 0.976471, 0.498039)
+shadow_offset = Vector2(1, 3.885)
+
+[sub_resource type="LabelSettings" id="LabelSettings_12u6p"]
+font_size = 101
+font_color = Color(0.129412, 1, 0.498039, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n60kk"]
+font_size = 91
+font_color = Color(0.0110876, 0.0110876, 0.0110876, 1)
+
+[node name="SetEntryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_241is")
+
+[node name="ScreenTitle" type="Control" parent="."]
+z_index = 150
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = 10.0
+offset_right = 230.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="ScreenTitle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.5
+offset_top = -11.5
+offset_right = 70.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CABLE FLY"
+label_settings = SubResource("LabelSettings_funbc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.911932, 0.657075, 0.00473799, 1)
+
+[node name="WeightControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="WeightControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -355.0
+offset_right = 118.0
+offset_bottom = -234.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_grxgu")
+expand_mode = 1
+
+[node name="WeightLabel" type="Label" parent="WeightControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -252.0
+offset_right = 52.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "9
+"
+label_settings = SubResource("LabelSettings_12u6p")
+horizontal_alignment = 1
+
+[node name="MoreWeight" type="TextureButton" parent="WeightControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 119.0
+offset_top = -342.0
+offset_right = 207.0
+offset_bottom = -253.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("2_srrsn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="LessWeight" type="TextureButton" parent="WeightControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -342.0
+offset_right = -154.0
+offset_bottom = -253.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("3_hm20u")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ScreenButton" parent="WeightControl" instance=ExtResource("5_7wk5r")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="RepControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="RepControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -65.0
+offset_right = 115.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_aukyj")
+expand_mode = 1
+
+[node name="RepLabel" type="Label" parent="RepControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 123.0
+offset_right = 52.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "12
+"
+label_settings = SubResource("LabelSettings_n60kk")
+horizontal_alignment = 1
+
+[node name="MoreReps" type="TextureButton" parent="RepControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 119.0
+offset_top = -23.0
+offset_right = 207.0
+offset_bottom = 66.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("2_srrsn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="LessReps" type="TextureButton" parent="RepControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -22.0
+offset_right = -154.0
+offset_bottom = 67.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("3_hm20u")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="EnterSetButton" parent="." instance=ExtResource("5_7wk5r")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -175.0
+offset_right = 122.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_qyvht")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="WeightControl/MoreWeight" to="." method="_on_more_weight_pressed"]
+[connection signal="pressed" from="WeightControl/LessWeight" to="." method="_on_less_weight_pressed"]
+[connection signal="pressed" from="RepControl/MoreReps" to="." method="_on_more_reps_pressed"]
+[connection signal="pressed" from="RepControl/LessReps" to="." method="_on_less_reps_pressed"]

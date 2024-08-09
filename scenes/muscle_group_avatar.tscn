@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8hv8w72qaxyl"]
+
+[ext_resource type="Texture2D" uid="uid://bgu5j4p6uxd0d" path="res://assets/mm_spritesheet.jpeg" id="1_8y5t2"]
+
+[sub_resource type="Animation" id="Animation_jej86"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s3627"]
+resource_name = "test_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grh2n"]
+_data = {
+"RESET": SubResource("Animation_jej86"),
+"test_animation": SubResource("Animation_s3627")
+}
+
+[node name="MuscleGroupAvatar" type="Sprite2D"]
+texture = ExtResource("1_8y5t2")
+offset = Vector2(-6.265, 0)
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_grh2n")
+}
+autoplay = "test_animation"

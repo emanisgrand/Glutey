@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqrdqxt6qk1f7"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_q0upd"]
+
+[node name="WorkoutManager" type="Node2D"]
+script = ExtResource("1_q0upd")

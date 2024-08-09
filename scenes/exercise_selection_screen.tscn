@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjjkwigtmc7sx"]
+
+[ext_resource type="PackedScene" uid="uid://btll6fj7ykqf" path="res://scenes/ui_header.tscn" id="1_c7tky"]
+[ext_resource type="PackedScene" uid="uid://byajgkha7kt2e" path="res://scenes/exercise_card.tscn" id="2_0elvq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ejvqx"]
+line_spacing = -12.26
+font_size = 26
+font_color = Color(1, 0.129757, 0.759906, 1)
+outline_size = 5
+outline_color = Color(0.0639927, 0.714051, 1.92523e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5b40"]
+line_spacing = -15.59
+font_size = 26
+font_color = Color(1, 0.129757, 0.759906, 1)
+outline_size = 5
+outline_color = Color(0.0639927, 0.714051, 1.92523e-07, 1)
+
+[node name="ExerciseSelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SELECT EXERCISE" parent="." instance=ExtResource("1_c7tky")]
+layout_mode = 1
+text = "CHEST EXERCISES"
+
+[node name="WorkoutSelectBG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.823357, 0.420041, 0, 1)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -346.0
+offset_right = 272.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="ExerciseButton" parent="GridContainer" instance=ExtResource("2_0elvq")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExerciseLabel" parent="GridContainer/ExerciseButton" index="0"]
+offset_left = -64.5
+offset_top = -17.5
+offset_right = 64.5
+offset_bottom = 18.5
+text = "CABLE FLY"
+
+[node name="ExerciseButton2" parent="GridContainer" instance=ExtResource("2_0elvq")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExerciseLabel" parent="GridContainer/ExerciseButton2" index="0"]
+text = "BENCH 
+PRESS"
+label_settings = SubResource("LabelSettings_ejvqx")
+
+[node name="ExerciseButton3" parent="GridContainer" instance=ExtResource("2_0elvq")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExerciseLabel" parent="GridContainer/ExerciseButton3" index="0"]
+text = "push ups"
+
+[node name="ExerciseButton4" parent="GridContainer" instance=ExtResource("2_0elvq")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ExerciseLabel" parent="GridContainer/ExerciseButton4" index="0"]
+text = "fly 
+machine"
+label_settings = SubResource("LabelSettings_p5b40")
+
+[editable path="GridContainer/ExerciseButton"]
+[editable path="GridContainer/ExerciseButton2"]
+[editable path="GridContainer/ExerciseButton3"]
+[editable path="GridContainer/ExerciseButton4"]

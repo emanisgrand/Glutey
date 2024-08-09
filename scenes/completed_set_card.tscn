@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvg3ua7c65lkr"]
+
+[ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="1_i0dec"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="2_fb0fg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_287s7"]
+font_size = 26
+font_color = Color(0.938787, 0.000157484, 0.780744, 1)
+outline_size = 7
+outline_color = Color(0.0861169, 0.70764, 0.68129, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6ne6"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="CompletedSetCard" instance=ExtResource("1_i0dec")]
+custom_minimum_size = Vector2(253, 170)
+offset_right = 253.0
+offset_bottom = 170.0
+texture_normal = ExtResource("2_fb0fg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExerciseLabel" type="Label" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_top = 15.0
+offset_right = 91.0
+offset_bottom = 51.0
+grow_horizontal = 2
+text = "DEADLIFT"
+label_settings = SubResource("LabelSettings_287s7")
+horizontal_alignment = 1
+
+[node name="SetLabel" type="Label" parent="." index="1"]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 52.0
+offset_right = 124.0
+offset_bottom = 89.0
+text = "🧮: 1"
+label_settings = SubResource("LabelSettings_r6ne6")
+
+[node name="WeightLabel" type="Label" parent="." index="2"]
+layout_mode = 1
+offset_left = 49.0
+offset_top = 82.0
+offset_right = 163.0
+offset_bottom = 117.0
+text = "⚖️: 60"
+label_settings = SubResource("LabelSettings_r6ne6")
+
+[node name="RepLabel" type="Label" parent="." index="3"]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 111.0
+offset_right = 164.0
+offset_bottom = 155.0
+text = "🦾: 420"
+label_settings = SubResource("LabelSettings_r6ne6")

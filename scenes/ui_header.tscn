@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://btll6fj7ykqf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_funbc"]
+line_spacing = 3.035
+font_size = 56
+font_color = Color(0.151444, 0.818638, 0.992083, 1)
+outline_size = 15
+outline_color = Color(1.10701e-06, 0.665517, 0.147348, 1)
+shadow_size = 31
+shadow_color = Color(0.607843, 0.466667, 0.976471, 0.498039)
+shadow_offset = Vector2(1, 3.885)
+
+[node name="UIHeader" type="Label"]
+z_index = 450
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -183.0
+offset_right = 183.0
+offset_bottom = 77.0
+grow_horizontal = 2
+text = "SCREEN TITLE"
+label_settings = SubResource("LabelSettings_funbc")

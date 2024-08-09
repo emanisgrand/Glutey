@@ -1,0 +1,351 @@
+[gd_scene load_steps=9 format=3 uid="uid://co7tio1bdib6m"]
+
+[ext_resource type="PackedScene" uid="uid://c8hv8w72qaxyl" path="res://scenes/muscle_group_avatar.tscn" id="1_ywvpe"]
+[ext_resource type="PackedScene" uid="uid://bvg3ua7c65lkr" path="res://scenes/completed_set_card.tscn" id="2_3xxng"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="3_io47l"]
+[ext_resource type="Texture2D" uid="uid://cjniayudda0bx" path="res://assets/textures/ui/red-button-isolate-backbround-3d-render-png.webp" id="4_4ibfn"]
+[ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="4_s2rke"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcj1g"]
+font_color = Color(0, 0, 0, 1)
+outline_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_t61od"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5u4ln"]
+font_size = 51
+font_color = Color(0, 0, 0, 1)
+
+[node name="ActiveWorkoutScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorkoutModeBG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.675426, 0.377034, 0, 1)
+
+[node name="WorkoutCompleteBG" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19254, 0.552216, 0, 1)
+
+[node name="CharacterIndicator" parent="." instance=ExtResource("1_ywvpe")]
+position = Vector2(143, 163.015)
+scale = Vector2(1.57576, 1.57576)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -360.0
+offset_bottom = 360.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+size_flags_stretch_ratio = 13.55
+
+[node name="CompletedSetCard" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_3xxng")]
+layout_mode = 2
+
+[node name="BodyParts" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = -123.0
+offset_right = 254.0
+offset_bottom = 81.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BodyParts"]
+custom_minimum_size = Vector2(235, 25)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 171.0
+grow_horizontal = 2
+
+[node name="ShouldersButton" parent="BodyParts/VBoxContainer" instance=ExtResource("4_s2rke")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ButtonBG" type="ColorRect" parent="BodyParts/VBoxContainer/ShouldersButton"]
+custom_minimum_size = Vector2(134, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -11.5
+offset_right = 67.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.443137)
+
+[node name="ButtonLabel" type="Label" parent="BodyParts/VBoxContainer/ShouldersButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -11.5
+offset_right = 19.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SHOULDERS"
+label_settings = SubResource("LabelSettings_gcj1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ArmsButton" parent="BodyParts/VBoxContainer" instance=ExtResource("4_s2rke")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ButtonBG" type="ColorRect" parent="BodyParts/VBoxContainer/ArmsButton"]
+custom_minimum_size = Vector2(134, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -11.5
+offset_right = 67.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.443137)
+
+[node name="ButtonLabel" type="Label" parent="BodyParts/VBoxContainer/ArmsButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -11.5
+offset_right = 19.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "arms"
+label_settings = SubResource("LabelSettings_gcj1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ChestButton" parent="BodyParts/VBoxContainer" instance=ExtResource("4_s2rke")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ButtonBG" type="ColorRect" parent="BodyParts/VBoxContainer/ChestButton"]
+custom_minimum_size = Vector2(134, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -11.5
+offset_right = 67.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.443137)
+
+[node name="ButtonLabel" type="Label" parent="BodyParts/VBoxContainer/ChestButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -11.5
+offset_right = 19.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "chest
+"
+label_settings = SubResource("LabelSettings_gcj1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CoreButton" parent="BodyParts/VBoxContainer" instance=ExtResource("4_s2rke")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ButtonBG" type="ColorRect" parent="BodyParts/VBoxContainer/CoreButton"]
+custom_minimum_size = Vector2(134, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -11.5
+offset_right = 67.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.443137)
+
+[node name="ButtonLabel" type="Label" parent="BodyParts/VBoxContainer/CoreButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -11.5
+offset_right = 19.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "core"
+label_settings = SubResource("LabelSettings_gcj1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="LegsButton" parent="BodyParts/VBoxContainer" instance=ExtResource("4_s2rke")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="ButtonBG" type="ColorRect" parent="BodyParts/VBoxContainer/LegsButton"]
+custom_minimum_size = Vector2(134, 23)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -11.5
+offset_right = 67.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.443137)
+
+[node name="ButtonLabel" type="Label" parent="BodyParts/VBoxContainer/LegsButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -11.5
+offset_right = 19.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "legs"
+label_settings = SubResource("LabelSettings_gcj1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="SelectionPR" type="TextureRect" parent="BodyParts"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.511
+anchor_top = 1.0
+anchor_right = 0.511
+anchor_bottom = 1.0
+offset_left = -109.552
+offset_top = 2.0
+offset_right = 109.448
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_io47l")
+expand_mode = 1
+
+[node name="WeightPR" type="Label" parent="BodyParts/SelectionPR"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -63.0
+offset_right = 36.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "⚖️60"
+label_settings = SubResource("LabelSettings_t61od")
+
+[node name="RepPR" type="Label" parent="BodyParts/SelectionPR"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.5
+offset_top = -10.0
+offset_right = 14.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "🧮8"
+label_settings = SubResource("LabelSettings_5u4ln")
+
+[node name="EndDayButton" parent="." instance=ExtResource("4_s2rke")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -88.0
+offset_right = 107.0
+offset_bottom = -6.0
+grow_vertical = 0
+texture_normal = ExtResource("4_4ibfn")
+ignore_texture_size = true
+stretch_mode = 0

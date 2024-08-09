@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1vrg5wbfvhbd"]
+
+[ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="1_3flfn"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="1_gaeds"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_07d22"]
+font_size = 46
+font_color = Color(0.922522, 0.000298026, 0.83063, 1)
+outline_size = 6
+outline_color = Color(0.113725, 0.713726, 0.682353, 1)
+
+[node name="ExerciseButtonPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExerciseButton" parent="." instance=ExtResource("1_3flfn")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 251.0
+offset_bottom = 161.0
+texture_normal = ExtResource("1_gaeds")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExerciseLabel" type="Label" parent="ExerciseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 2.0
+offset_right = -4.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "DEADLIFT"
+label_settings = SubResource("LabelSettings_07d22")
+horizontal_alignment = 1
+vertical_alignment = 1
