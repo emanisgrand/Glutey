@@ -18,6 +18,7 @@ config/icon="res://assets/textures/ui/glutey00.svg"
 [autoload]
 
 Util="*res://scripts/utility.gd"
+DataManager="*res://scripts/data_manager.gd"
 
 [display]
 
@@ -34,3 +35,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

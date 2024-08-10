@@ -93,13 +93,10 @@ script = ExtResource("4_xqqmk")
 
 [node name="SetEntryScreen" parent="." instance=ExtResource("4_1v1ci")]
 visible = false
-script = ExtResource("4_xqqmk")
 
 [node name="ExerciseSelectionScreen" parent="." instance=ExtResource("5_evod1")]
 visible = false
-script = ExtResource("4_xqqmk")
 
 [node name="ActiveWorkoutScreen" parent="." instance=ExtResource("6_000e2")]
-script = ExtResource("4_xqqmk")
 
 [connection signal="pressed" from="Debug/ToggleConsole" to="." method="_on_toggle_console_pressed"]

@@ -12,6 +12,19 @@ func _ready():
 	console.visible = false
 	register_buttons()
 	change_screen(active_workout_screen)
+	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
+	exercise_selection_screen.connect("exercise_selected", _on_exercise_selected)
+	print("Connected exercise_selected signal")
+
+func _on_muscle_group_selected(group: String):
+	exercise_selection_screen.set_muscle_group(group)
+	change_screen(exercise_selection_screen)
+
+func _on_exercise_selected(exercise_name: String):
+	print("UI Manager received exercise_selected signal for: ", exercise_name)
+	set_entry_screen.set_exercise(exercise_name)
+	change_screen(set_entry_screen)
+	print("Changed screen to set_entry_screen")
 
 func register_buttons():
 	var buttons = get_tree().get_nodes_in_group("buttons")
