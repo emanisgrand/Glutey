@@ -91,10 +91,10 @@ stretch_mode = 0
 visible = false
 script = ExtResource("4_xqqmk")
 
-[node name="SetEntryScreen" parent="." instance=ExtResource("4_1v1ci")]
+[node name="ExerciseSelectionScreen" parent="." instance=ExtResource("5_evod1")]
 visible = false
 
-[node name="ExerciseSelectionScreen" parent="." instance=ExtResource("5_evod1")]
+[node name="SetEntryScreen" parent="." instance=ExtResource("4_1v1ci")]
 visible = false
 
 [node name="ActiveWorkoutScreen" parent="." instance=ExtResource("6_000e2")]

@@ -13,18 +13,19 @@ func _ready():
 	register_buttons()
 	change_screen(active_workout_screen)
 	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
-	exercise_selection_screen.connect("exercise_selected", _on_exercise_selected)
-	print("Connected exercise_selected signal")
+	set_entry_screen.connect("set_recorded", _on_set_recorded)
 
 func _on_muscle_group_selected(group: String):
 	exercise_selection_screen.set_muscle_group(group)
 	change_screen(exercise_selection_screen)
 
+func _on_set_recorded(exercise: String, weight: int, reps: int):
+	active_workout_screen.add_set(weight, reps)
+	change_screen(active_workout_screen)
+
 func _on_exercise_selected(exercise_name: String):
-	print("UI Manager received exercise_selected signal for: ", exercise_name)
 	set_entry_screen.set_exercise(exercise_name)
 	change_screen(set_entry_screen)
-	print("Changed screen to set_entry_screen")
 
 func register_buttons():
 	var buttons = get_tree().get_nodes_in_group("buttons")
@@ -37,9 +38,6 @@ func _on_button_pressed(button):
 	match button.name:
 		"CompletedSetCard":
 			print("Completed Set Card is pressed")
-			change_screen(set_entry_screen)
-		"ExerciseCard":
-			print("Exercise Card is pressed")
 			change_screen(set_entry_screen)
 		"EndDayButton":
 			print("End Day button is pressed")
@@ -61,6 +59,11 @@ func change_screen(new_screen):
 	if current_screen != null:
 		current_screen.visible = true
 		get_tree().call_group("buttons", "set_disabled", false)
+
+func _on_exercise_card_pressed(exercise_name: String):
+	set_entry_screen.set_exercise(exercise_name)
+	active_workout_screen.set_current_exercise(exercise_name)
+	change_screen(set_entry_screen)
 
 func _on_toggle_console_pressed():
 	console.visible = !console.visible

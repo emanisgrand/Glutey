@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7g3moxduh81d"]
+
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="1_lhjqw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j88t2"]
+line_spacing = -6.22
+font_size = 20
+font_color = Color(1, 0.129757, 0.759906, 1)
+outline_size = 5
+outline_color = Color(0.0639927, 0.714051, 1.92523e-07, 1)
+
+[node name="ExerciseCard" type="TextureButton"]
+custom_minimum_size = Vector2(169, 118)
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 179.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_lhjqw")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExerciseLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "exercise"
+label_settings = SubResource("LabelSettings_j88t2")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true

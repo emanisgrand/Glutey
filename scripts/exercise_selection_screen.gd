@@ -7,12 +7,6 @@ extends Control
 
 var current_muscle_group: String = ""
 
-func _ready():
-	if ui_manager:
-		connect("exercise_selected", ui_manager._on_exercise_selected)
-		print("Manually connected exercise_selected signal")
-	else:
-		print("Failed to find UI Manager node")
 
 func set_muscle_group(group: String):
 	current_muscle_group = group
@@ -31,5 +25,14 @@ func _populate_exercise_grid():
 		grid_container.add_child(card)
 
 func _on_exercise_card_pressed(exercise_name: String):
-	emit_signal("exercise_selected", exercise_name)
-	print("Exercise selected: ", exercise_name)
+		# Direct screen change
+	var ui_manager = get_node("/root/UIManager")  # Adjust this path if necessary
+	if ui_manager:
+		var set_entry_screen = ui_manager.get_node("SetEntryScreen")  # Adjust this path if necessary
+		if set_entry_screen:
+			set_entry_screen.set_exercise(exercise_name)
+			ui_manager.change_screen(set_entry_screen)
+		else:
+			print("SetEntryScreen not found")
+	else:
+		print("UIManager not found")

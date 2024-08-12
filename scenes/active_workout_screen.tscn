@@ -47,8 +47,7 @@ color = Color(0.19254, 0.552216, 0, 1)
 position = Vector2(143, 163.015)
 scale = Vector2(1.57576, 1.57576)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-clip_contents = false
+[node name="CompletedSetContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -61,13 +60,13 @@ offset_bottom = 360.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CompletedSetContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 10
+size_flags_vertical = 8
 size_flags_stretch_ratio = 13.55
 
-[node name="CompletedSetCard" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_3xxng")]
+[node name="CompletedSetCard" parent="CompletedSetContainer/VBoxContainer" instance=ExtResource("2_3xxng")]
 layout_mode = 2
 
 [node name="MuscleGroups" type="Control" parent="."]

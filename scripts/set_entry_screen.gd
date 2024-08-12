@@ -6,6 +6,7 @@ extends Control
 
 var rep_count = 1
 var weight = 1
+signal set_recorded(exercise: String, weight: int, reps: int)
 
 func _ready():
 	update_rep_display()
@@ -39,6 +40,9 @@ func update_weight_display():
 
 func set_exercise(exercise_name: String):
 	exercise_label.text = exercise_name
+
+func _on_enter_set_button_pressed():
+	emit_signal("set_recorded", exercise_label.text, weight, rep_count)
 
 # Connected signals
 func _on_more_weight_pressed():

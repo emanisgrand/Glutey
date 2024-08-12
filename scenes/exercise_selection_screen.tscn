@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://btll6fj7ykqf" path="res://scenes/ui_header.tscn" id="1_c7tky"]
 [ext_resource type="Script" path="res://scripts/exercise_selection_screen.gd" id="1_vaolq"]
-[ext_resource type="PackedScene" uid="uid://byajgkha7kt2e" path="res://scenes/exercise_card.tscn" id="2_0elvq"]
+[ext_resource type="PackedScene" uid="uid://b7g3moxduh81d" path="res://scenes/exercise_cardV2.tscn" id="3_a5uiu"]
 
 [node name="ExerciseSelectionScreen" type="Control"]
 layout_mode = 3
@@ -36,15 +36,11 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -272.0
 offset_top = -346.0
-offset_right = 272.0
+offset_right = 258.0
 offset_bottom = 346.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 4
+columns = 3
 
-[node name="ExerciseCard" parent="ExerciseListGrid" instance=ExtResource("2_0elvq")]
+[node name="ExerciseCard" parent="ExerciseListGrid" instance=ExtResource("3_a5uiu")]
 layout_mode = 2
-
-[connection signal="pressed" from="ExerciseListGrid/ExerciseCard" to="." method="_on_exercise_card_pressed"]
-
-[editable path="ExerciseListGrid/ExerciseCard"]
