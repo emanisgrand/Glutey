@@ -1,17 +1,34 @@
 extends Control
 
+signal set_recorded(exercise: String, weight: int, reps: int)
+
 @onready var rep_label = $RepControl/RepLabel
 @onready var weight_label = $WeightControl/WeightLabel
 @onready var exercise_label = $ScreenTitle/Label
+@onready var enter_set_button = $EnterSetButton
 
 var rep_count = 1
 var weight = 1
-signal set_recorded(exercise: String, weight: int, reps: int)
+var current_exercise: String= ""
 
 func _ready():
 	update_rep_display()
 	update_weight_display()
+	enter_set_button.connect("pressed", _on_enter_set_button_pressed)
 
+func set_exercise(exercise_name: String):
+	current_exercise = exercise_name
+	exercise_label.text = exercise_name
+
+func _on_enter_set_button_pressed():
+	emit_signal("set_recorded", exercise_label.text, weight, rep_count)
+	# Reset values for next set
+	rep_count = 1
+	weight = 1
+	update_rep_display()
+	update_weight_display()
+
+# Number buttons.
 func increase_reps():
 	rep_count += 1
 	update_rep_display()
@@ -37,12 +54,6 @@ func update_rep_display():
 func update_weight_display():
 	weight_label.text = str(weight)
 	weight_label.force_update_transform()
-
-func set_exercise(exercise_name: String):
-	exercise_label.text = exercise_name
-
-func _on_enter_set_button_pressed():
-	emit_signal("set_recorded", exercise_label.text, weight, rep_count)
 
 # Connected signals
 func _on_more_weight_pressed():

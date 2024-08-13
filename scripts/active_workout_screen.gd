@@ -3,6 +3,7 @@ extends Control
 @onready var completed_set_card_scene = preload("res://scenes/completed_set_card.tscn")
 
 signal muscle_group_selected(group: String)
+
 var current_exercise: String = ""
 var sets_data: Array = []
 
@@ -19,11 +20,11 @@ func _on_muscle_group_button_pressed(button_name: String):
 func set_current_exercise(exercise_name: String):
 	current_exercise = exercise_name
 	sets_data.clear()
-	update_completed_sets_display()
 
-func add_set(weight: int, reps: int):
-	sets_data.append({"weight": weight, "reps": reps})
-	update_completed_sets_display()
+func add_set(exercise:String, weight: int, reps: int):
+	var new_set_card = completed_set_card_scene.instantiate()
+	new_set_card.set_set_data(exercise, weight, reps)
+	completed_set_container.add_child(new_set_card)
 
 func update_completed_sets_display():
 	# Clear existing set cards

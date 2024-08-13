@@ -1,12 +1,12 @@
 extends Control
 
+signal exercise_selected(exercise_name: String)
+
 @onready var grid_container = $ExerciseListGrid
-@onready var exercise_card_scene = preload("res://scenes/exercise_card.tscn")
+@onready var exercise_card_scene = preload("res://scenes/exercise_cardV2.tscn")
 @onready var header_label = $"SELECT EXERCISE"
-@onready var ui_manager = $".."
 
 var current_muscle_group: String = ""
-
 
 func set_muscle_group(group: String):
 	current_muscle_group = group
@@ -17,22 +17,28 @@ func _populate_exercise_grid():
 	for child in grid_container.get_children():
 		child.queue_free()
 	
+	if not DataManager:
+		print("DataManager not found. Check Autoloads")
+		return
+	
 	var exercises = DataManager.get_exercises_for_muscle_group(current_muscle_group)
+	if exercises.is_empty():
+		print("No exercises found for muscle group: ", current_muscle_group)
+		return
+		
 	for exercise in exercises:
 		var card = exercise_card_scene.instantiate()
-		card.get_node("ExerciseLabel").text = exercise
-		card.pressed.connect(_on_exercise_card_pressed.bind(exercise))
+		card.set_exercise_name(exercise)
+		card.connect("exercise_selected", _on_exercise_selected)
 		grid_container.add_child(card)
 
-func _on_exercise_card_pressed(exercise_name: String):
-		# Direct screen change
-	var ui_manager = get_node("/root/UIManager")  # Adjust this path if necessary
+func _on_exercise_selected(exercise_name: String):
+	print("Selected exercise: ", exercise_name)
+	emit_signal("exercise_selected", exercise_name)
+	var ui_manager = get_node("/root/UIManager")
 	if ui_manager:
-		var set_entry_screen = ui_manager.get_node("SetEntryScreen")  # Adjust this path if necessary
-		if set_entry_screen:
-			set_entry_screen.set_exercise(exercise_name)
-			ui_manager.change_screen(set_entry_screen)
-		else:
-			print("SetEntryScreen not found")
+		ui_manager.set_entry_screen.set_exercise(exercise_name)
+		ui_manager.change_screen("set_entry")
 	else:
-		print("UIManager not found")
+		print("UI Manager not found")
+	# For now, we'll just print the selected exercise name
