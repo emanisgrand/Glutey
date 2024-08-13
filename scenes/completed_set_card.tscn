@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvg3ua7c65lkr"]
+[gd_scene load_steps=5 format=3 uid="uid://bvg3ua7c65lkr"]
 
-[ext_resource type="Script" path="res://scripts/completed_set_card.gd" id="2_13gy5"]
 [ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="2_fb0fg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bjqis"]
@@ -24,7 +23,6 @@ offset_bottom = 150.0
 texture_normal = ExtResource("2_fb0fg")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("2_13gy5")
 
 [node name="ExerciseLabel" type="Label" parent="."]
 layout_mode = 1
@@ -36,7 +34,7 @@ offset_top = 15.0
 offset_right = 91.0
 offset_bottom = 51.0
 grow_horizontal = 2
-text = "DEADLIFT"
+text = "EXERCISE"
 label_settings = SubResource("LabelSettings_bjqis")
 horizontal_alignment = 1
 
@@ -74,25 +72,16 @@ offset_bottom = 132.0
 text = "🦾"
 label_settings = SubResource("LabelSettings_8so38")
 
-[node name="CompletedSetGrid" type="GridContainer" parent="."]
-layout_direction = 2
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -142.2
-offset_top = -26.0
-offset_right = -42.2
-offset_bottom = 49.0
-grow_horizontal = 0
-grow_vertical = 2
-columns = 5
+[node name="CompletedSetContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 49.0
+offset_right = 158.0
+offset_bottom = 124.0
 
-[node name="CompletedSetLabel" type="Label" parent="CompletedSetGrid"]
+[node name="CompletedSetLabel" type="Label" parent="CompletedSetContainer"]
 layout_mode = 2
 text = "1
-60
-8"
+1
+1"
 label_settings = SubResource("LabelSettings_l8yuw")

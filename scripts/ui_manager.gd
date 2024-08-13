@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var set_entry_screen = $SetEntryScreen
 
 var current_screen = null
+var current_muscle_group = ""
+var current_exercise = ""
 
 func _ready():
 	console.visible = false
@@ -31,6 +33,7 @@ func _connect_signals():
 	# Connect other signals here
 
 func _on_muscle_group_selected(group: String):
+	current_muscle_group = group
 	exercise_selection_screen.set_muscle_group(group)
 	change_screen("exercise_selection")
 
@@ -44,6 +47,7 @@ func _on_exercise_card_pressed(exercise_name: String):
 	change_screen("set_entry")
 
 func _on_exercise_selected(exercise_name: String):
+	current_exercise = exercise_name
 	set_entry_screen.set_exercise(exercise_name)
 	active_workout_screen.set_current_exercise(exercise_name)
 	change_screen("set_entry")

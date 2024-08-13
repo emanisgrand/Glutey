@@ -12,8 +12,8 @@ func _ready():
 func _on_pressed():
 	emit_signal("exercise_selected", exercise_label.text)
 
-func set_exercise_name(name: String):
+func set_exercise_name(exercise_name: String):
 	if exercise_label:
-		exercise_label.text = name
+		exercise_label.text = exercise_name
 	else:
 		print("Label not found in card")

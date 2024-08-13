@@ -18,10 +18,13 @@ func _ready():
 
 func set_exercise(exercise_name: String):
 	current_exercise = exercise_name
-	exercise_label.text = exercise_name
+	if exercise_label:
+		exercise_label.text = exercise_name
+	else:
+		push_error("Exercise label not found in SetEntryScreen")
 
 func _on_enter_set_button_pressed():
-	emit_signal("set_recorded", exercise_label.text, weight, rep_count)
+	emit_signal("set_recorded", current_exercise, weight, rep_count)
 	# Reset values for next set
 	rep_count = 1
 	weight = 1
