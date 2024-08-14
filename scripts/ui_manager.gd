@@ -2,21 +2,48 @@ extends CanvasLayer
 
 signal day_ended(date: Dictionary)
 
-@onready var console = $Debug/ConsoleLog
 @onready var calendar_view = $CalendarView
+@onready var console = $Debug/ConsoleLog
 @onready var exercise_selection_screen = $ExerciseSelectionScreen
 @onready var active_workout_screen = $ActiveWorkoutScreen
 @onready var set_entry_screen = $SetEntryScreen
+@onready var debug_panel = $DebugPanel
 
 var current_screen = null
 var current_muscle_group = ""
 var current_exercise = ""
+var current_date = Time.get_date_dict_from_system()
+var is_view_only_mode = false
 
 func _ready():
 	console.visible = false
 	_connect_signals()
 	_connect_end_day_button()
-	change_screen("active_workout")
+	_setup_debug_tools()
+	change_screen("calendar")
+
+func _connect_signals():
+	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
+	set_entry_screen.connect("set_recorded", _on_set_recorded)
+	exercise_selection_screen.connect("exercise_selected", _on_exercise_selected)
+	active_workout_screen.connect("existing_set_selected", _on_existing_set_selected)
+	calendar_view.connect("day_selected", _on_day_selected)
+	# Connect other signals here
+
+func _on_day_selected(date: Dictionary, is_recorded: bool):
+	if is_recorded:
+		is_view_only_mode = true
+		if active_workout_screen:
+			active_workout_screen.set_view_only_mode(true)
+	# TODO: Load the workout data for the selected date
+		change_screen("active_workout")
+	else:
+		is_view_only_mode = false
+		print("No workout record for this day.")
+
+func _setup_debug_tools():
+	debug_panel.get_node("VBoxContainer/AdvanceDayButton").connect("pressed", _on_advance_day_pressed)
+	debug_panel.get_node("VBoxContainer/RecordWorkoutButton").connect("pressed", _on_record_workout_pressed)
 
 func _connect_end_day_button():
 	var end_day_button = get_node("ActiveWorkoutScreen/EndDayButton")
@@ -33,12 +60,16 @@ func _on_end_day_button_pressed():
 	if calendar_view:
 		calendar_view.update_calendar()
 
-func _connect_signals():
-	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
-	set_entry_screen.connect("set_recorded", _on_set_recorded)
-	exercise_selection_screen.connect("exercise_selected", _on_exercise_selected)
-	active_workout_screen.connect("existing_set_selected", _on_existing_set_selected)
-	# Connect other signals here
+func _on_advance_day_pressed():
+	current_date = Time.get_date_dict_from_unix_time(Time.get_unix_time_from_datetime_dict(current_date) + 86400)
+	if calendar_view:
+		calendar_view.set_date(current_date)
+	print("Advanced to date: ", current_date)
+	
+func _on_record_workout_pressed():
+	DataManager.record_workout_day(current_date)
+	calendar_view.update_calendar()
+	print("Recorded workout for date: ", current_date)
 
 func _on_muscle_group_selected(group: String):
 	current_muscle_group = group
@@ -80,10 +111,15 @@ func change_screen(screen_name: String):
 		_:
 			print("Invalid screen name")
 			return
-	
-	current_screen.visible = true
+	if current_screen:
+		current_screen.visible = true
+	else: 
+		print("visiblity unaffected")
 
 func _on_toggle_console_pressed():
 	console.visible = !console.visible
 
+# Add this method for testing purposes
+func set_calendar_view(calendar):
+	calendar_view = calendar
 

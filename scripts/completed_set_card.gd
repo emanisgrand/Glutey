@@ -19,6 +19,9 @@ func _ready():
 	label_settings.font_size = 16
 	label_settings.font_color = Color.BLACK
 
+func set_interactive(interactive: bool):
+	disabled = !interactive
+
 func set_exercise(exercise_name: String):
 	exercise = exercise_name
 	# Use call_deferred to ensure the label is updated after the node is ready
