@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bghqs5xlixjys"]
+[gd_scene load_steps=8 format=3 uid="uid://bghqs5xlixjys"]
 
 [ext_resource type="Script" path="res://scripts/ui_manager.gd" id="1_tuiec"]
 [ext_resource type="Texture2D" uid="uid://fqfsc6nrykcx" path="res://assets/textures/ui/gear.png" id="2_aluqm"]
 [ext_resource type="PackedScene" uid="uid://bmk558ppj38h2" path="res://scenes/calendar.tscn" id="3_t2pkh"]
 [ext_resource type="PackedScene" uid="uid://b4k76udx15n7k" path="res://scenes/set_entry_screen.tscn" id="4_1v1ci"]
-[ext_resource type="Script" path="res://scripts/base_screen.gd" id="4_xqqmk"]
 [ext_resource type="PackedScene" uid="uid://cjjkwigtmc7sx" path="res://scenes/exercise_selection_screen.tscn" id="5_evod1"]
 [ext_resource type="PackedScene" uid="uid://co7tio1bdib6m" path="res://scenes/active_workout_screen.tscn" id="6_000e2"]
 
@@ -87,10 +86,6 @@ texture_normal = ExtResource("2_aluqm")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CalendarView" parent="." instance=ExtResource("3_t2pkh")]
-visible = false
-script = ExtResource("4_xqqmk")
-
 [node name="ExerciseSelectionScreen" parent="." instance=ExtResource("5_evod1")]
 visible = false
 
@@ -98,5 +93,8 @@ visible = false
 visible = false
 
 [node name="ActiveWorkoutScreen" parent="." instance=ExtResource("6_000e2")]
+
+[node name="CalendarView" parent="." instance=ExtResource("3_t2pkh")]
+visible = false
 
 [connection signal="pressed" from="Debug/ToggleConsole" to="." method="_on_toggle_console_pressed"]
