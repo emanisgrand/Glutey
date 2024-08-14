@@ -4,10 +4,9 @@ extends Control
 @onready var completed_set_card_scene = preload("res://scenes/completed_set_card.tscn")
 
 signal muscle_group_selected(group: String)
+signal existing_set_selected(exercise: String, set_number: int, weight: int, reps: int)
 
-var current_exercise: String = ""
-var sets_data: Array = []
-var current_set_number: int = 1
+var exercise_cards: Dictionary = {}
 
 func _ready():
 	var muscle_group_buttons = $MuscleGroups/VBoxContainer.get_children()
@@ -20,42 +19,20 @@ func _on_muscle_group_button_pressed(button_name: String):
 	emit_signal("muscle_group_selected", muscle_group)
 
 func set_current_exercise(exercise_name: String):
-	current_exercise = exercise_name
-	sets_data.clear()
-	current_set_number = 1
+	if not exercise_cards.has(exercise_name):
+		var new_card = completed_set_card_scene.instantiate()
+		new_card.set_exercise(exercise_name)
+		new_card.connect("set_selected", _on_set_selected)
+		completed_set_container.add_child(new_card)
+		exercise_cards[exercise_name] = new_card
 
 func add_set(exercise:String, weight: int, reps: int):
-	var new_set_card = completed_set_card_scene.instantiate()
+	if not exercise_cards.has(exercise):
+		set_current_exercise(exercise)
 	
-	#update labels
-	var exercise_label = new_set_card.get_node("ExerciseLabel")
-	if exercise_label:
-		exercise_label.text = exercise.to_upper()
-	else:
-		push_error("ExerciseLabel not found in CompleteSetCard")
-	
-	var completed_set_label = new_set_card.get_node("CompletedSetContainer/CompletedSetLabel")
-	
-	if completed_set_label:
-		completed_set_label.text = "%d\n%d\n%d" % [current_set_number, weight, reps]
-	else:
-		push_error("CompletedSetLabel not found in CompletedSetCard")
-		
-	completed_set_container.add_child(new_set_card)
-	sets_data.append({"exercise": exercise, "set": current_set_number, "weight": weight, "reps": reps})
-	current_set_number += 1
+	var card = exercise_cards[exercise]
+	var set_number = card.get_last_set_number() + 1
+	card.add_set(set_number,weight,reps)
 
-func update_completed_sets_display():
-	# Clear existing set cards
-	for child in completed_set_container.get_children():
-		child.queue_free()
-	
-	# Add new set cards
-	for i in range(sets_data.size()):
-		var set_data = sets_data[i]
-		var set_card = completed_set_card_scene.instantiate()
-		
-		set_card.get_node("ExerciseLabel").text = current_exercise
-		set_card.get_node("CompletedSetGrid/CompletedSetLabel").text = "%d\n%d\n%d" % [i + 1, set_data.weight, set_data.reps]
-		
-		completed_set_container.add_child(set_card)
+func _on_set_selected(exercise: String, set_number: int, weight: int, reps: int):
+	emit_signal("existing_set_selected", exercise, set_number, weight, reps)

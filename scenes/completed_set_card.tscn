@@ -1,5 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvg3ua7c65lkr"]
 
+[ext_resource type="Script" path="res://scripts/completed_set_card.gd" id="2_13gy5"]
 [ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="2_fb0fg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bjqis"]
@@ -12,9 +13,6 @@ outline_color = Color(0.0861169, 0.70764, 0.68129, 1)
 font_size = 20
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_l8yuw"]
-font_color = Color(0, 0, 0, 1)
-
 [node name="CompletedSetCard" type="TextureButton"]
 custom_minimum_size = Vector2(220, 150)
 offset_left = 20.0
@@ -23,6 +21,7 @@ offset_bottom = 150.0
 texture_normal = ExtResource("2_fb0fg")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("2_13gy5")
 
 [node name="ExerciseLabel" type="Label" parent="."]
 layout_mode = 1
@@ -78,10 +77,3 @@ offset_left = 78.0
 offset_top = 49.0
 offset_right = 158.0
 offset_bottom = 124.0
-
-[node name="CompletedSetLabel" type="Label" parent="CompletedSetContainer"]
-layout_mode = 2
-text = "1
-1
-1"
-label_settings = SubResource("LabelSettings_l8yuw")

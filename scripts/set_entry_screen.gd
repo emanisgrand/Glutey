@@ -16,16 +16,21 @@ func _ready():
 	update_weight_display()
 	enter_set_button.connect("pressed", _on_enter_set_button_pressed)
 
-func set_exercise(exercise_name: String):
+func set_exercise(exercise_name: String, set_weight:int =1, set_reps: int=1):
 	current_exercise = exercise_name
+	weight = set_weight
+	rep_count = set_reps
+	
 	if exercise_label:
 		exercise_label.text = exercise_name
 	else:
 		push_error("Exercise label not found in SetEntryScreen")
+	
+	update_weight_display()
+	update_rep_display()
 
 func _on_enter_set_button_pressed():
 	emit_signal("set_recorded", current_exercise, weight, rep_count)
-	# Reset values for next set
 	rep_count = 1
 	weight = 1
 	update_rep_display()

@@ -30,6 +30,7 @@ func _connect_signals():
 	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
 	set_entry_screen.connect("set_recorded", _on_set_recorded)
 	exercise_selection_screen.connect("exercise_selected", _on_exercise_selected)
+	active_workout_screen.connect("existing_set_selected", _on_existing_set_selected)
 	# Connect other signals here
 
 func _on_muscle_group_selected(group: String):
@@ -40,6 +41,10 @@ func _on_muscle_group_selected(group: String):
 func _on_set_recorded(exercise: String, weight: int, reps: int):
 	active_workout_screen.add_set(exercise, weight, reps)
 	change_screen("active_workout")
+
+func _on_existing_set_selected(exercise: String, _set_number: int, weight: int, reps: int):
+	set_entry_screen.set_exercise(exercise, weight, reps)
+	change_screen("set_entry")
 
 func _on_exercise_card_pressed(exercise_name: String):
 	set_entry_screen.set_exercise(exercise_name)
