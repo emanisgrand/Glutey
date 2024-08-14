@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal day_ended(date: Dictionary)
+
 @onready var console = $Debug/ConsoleLog
 @onready var calendar_view = $CalendarView
 @onready var exercise_selection_screen = $ExerciseSelectionScreen
@@ -24,7 +26,12 @@ func _connect_end_day_button():
 		print("EndDayButton not found")
 
 func _on_end_day_button_pressed():
+	var current_date = Time.get_date_dict_from_system()
+	emit_signal("day_ended", current_date)
+	DataManager.record_workout_day(current_date)
 	change_screen("calendar")
+	if calendar_view:
+		calendar_view.update_calendar()
 
 func _connect_signals():
 	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
