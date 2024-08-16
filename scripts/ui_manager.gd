@@ -20,7 +20,7 @@ func _ready():
 	_connect_signals()
 	_connect_end_day_button()
 	_setup_debug_tools()
-	change_screen("calendar")
+	change_screen("active_workout")
 
 func _connect_signals():
 	active_workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
@@ -109,12 +109,12 @@ func change_screen(screen_name: String):
 		"set_entry":
 			current_screen = set_entry_screen
 		_:
-			print("Invalid screen name")
+			print("Invalid screen name", screen_name)
 			return
 	if current_screen:
 		current_screen.visible = true
 	else: 
-		print("visiblity unaffected")
+		print("Screen not found: ", screen_name)
 
 func _on_toggle_console_pressed():
 	console.visible = !console.visible
@@ -122,4 +122,3 @@ func _on_toggle_console_pressed():
 # Add this method for testing purposes
 func set_calendar_view(calendar):
 	calendar_view = calendar
-
