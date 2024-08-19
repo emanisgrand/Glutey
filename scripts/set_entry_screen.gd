@@ -7,13 +7,15 @@ signal set_recorded(exercise: String, weight: float, reps: int)
 @onready var exercise_label = $ScreenTitle/Label
 @onready var enter_set_button = $EnterSetButton
 @onready var mod_plate_checkbox: CheckBox = $ModPlateCheckbox
+@onready var weight_image: TextureRect = $WeightControl/WeightImage
+
 
 var rep_count = 1
 var weight: float = 0.0
 var current_exercise: Exercise = null
 
 func _ready():
-	weight_label.text = "%.1f" % weight
+	weight_label.text = str(int(weight))
 	rep_label.text = str(rep_count)
 	enter_set_button.connect("pressed", _on_enter_set_button_pressed)
 	if mod_plate_checkbox:
@@ -53,20 +55,35 @@ func decrease_weight():
 
 func update_weight_display():
 	if current_exercise == null:
-		weight_label.text = "0.0"
+		weight_label.text = "0"
 		return
 	
 	var display_weight = weight
 	if current_exercise.has_mod_plate and mod_plate_checkbox and mod_plate_checkbox.button_pressed:
 		display_weight += 0.5
-	weight_label.text = "%.1f" % display_weight
+		weight_label.text = "%.1f" % display_weight
+	else:
+		weight_label.text = str(int(display_weight))
 
 func update_ui_for_exercise():
 	if mod_plate_checkbox:
 		mod_plate_checkbox.visible = current_exercise.has_mod_plate
-	# Here you would update the weight image texture based on the exercise type
-	# For example:
-	# $WeightControl/WeightImage.texture = load("res://assets/textures/" + current_exercise.equipment_type + "_weight.png")
+	
+	var image_path = "res://assets/textures/ui/"
+	match current_exercise.equipment_type:
+		"dumbbell":
+			image_path += "dumbell_weights.svg"
+		"cable":
+			image_path += "cable_weights.svg"
+		_:
+			# Default to dumbbell image if no specific image is available
+			image_path += "dumbell_weights.svg"
+	
+	var texture = load(image_path)
+	if texture:
+		weight_image.texture = texture
+	else:
+		push_error("Failed to load texture: " + image_path)
 
 func _on_mod_plate_toggled(_button_pressed):
 	update_weight_display()
