@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b4k76udx15n7k"]
 
 [ext_resource type="Script" path="res://scripts/set_entry_screen.gd" id="1_241is"]
-[ext_resource type="Texture2D" uid="uid://ho3uglg4h38r" path="res://assets/textures/ui/dumbell_weight.svg" id="1_grxgu"]
+[ext_resource type="Texture2D" uid="uid://ho3uglg4h38r" path="res://assets/textures/ui/dumbell_weights.svg" id="1_grxgu"]
 [ext_resource type="Texture2D" uid="uid://dih62sh4pgbra" path="res://assets/textures/ui/plus-icon.svg" id="2_srrsn"]
 [ext_resource type="Texture2D" uid="uid://cpow7pry8jclp" path="res://assets/textures/ui/minus-icon.svg" id="3_hm20u"]
 [ext_resource type="Texture2D" uid="uid://eq3lmrn6yukt" path="res://assets/textures/ui/reps-icon.svg" id="4_aukyj"]
@@ -20,8 +20,7 @@ shadow_offset = Vector2(1, 3.885)
 
 [sub_resource type="LabelSettings" id="LabelSettings_12u6p"]
 font_size = 101
-font_color = Color(0.129412, 1, 0.498039, 1)
-outline_size = 20
+font_color = Color(0, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n60kk"]

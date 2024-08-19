@@ -13,6 +13,14 @@ signal set_recorded(exercise: String, weight: float, reps: int)
 var rep_count = 1
 var weight: float = 0.0
 var current_exercise: Exercise = null
+var previous_weight: float = 0.0
+var previous_reps: int = 0
+var is_first_set: bool = true
+
+# Define color constants
+const COLOR_DEFAULT = Color.WHITE
+const COLOR_INCREASE = Color.GREEN
+const COLOR_DECREASE = Color.BLUE
 
 func _ready():
 	weight_label.text = str(int(weight))
@@ -36,6 +44,11 @@ func set_exercise(exercise_name: String, set_weight: float = 0.0, set_reps: int 
 		update_weight_display()
 		update_rep_display()
 		update_ui_for_exercise()
+		
+		# Reset previous values and first set flag
+		previous_weight = weight
+		previous_reps = rep_count
+		is_first_set = true
 	else:
 		push_error("Exercise not found: " + exercise_name)
 
@@ -64,6 +77,8 @@ func update_weight_display():
 		weight_label.text = "%.1f" % display_weight
 	else:
 		weight_label.text = str(int(display_weight))
+		
+	update_label_color(weight_label, display_weight, previous_weight)
 
 func update_ui_for_exercise():
 	if mod_plate_checkbox:
@@ -99,6 +114,17 @@ func decrease_reps():
 
 func update_rep_display():
 	rep_label.text = str(rep_count)
+	update_label_color(rep_label, rep_count, previous_reps)
+
+func update_label_color(label: Label, current_value, previous_value):
+	if is_first_set:
+		label.add_theme_color_override("font_color", COLOR_DEFAULT)
+	elif current_value > previous_value:
+		label.add_theme_color_override("font_color", COLOR_INCREASE)
+	elif current_value < previous_value:
+		label.add_theme_color_override("font_color", COLOR_DECREASE)
+	else:
+		label.add_theme_color_override("font_color", COLOR_DEFAULT)
 
 func _on_enter_set_button_pressed():
 	if current_exercise:
@@ -106,6 +132,13 @@ func _on_enter_set_button_pressed():
 		if current_exercise.has_mod_plate and mod_plate_checkbox.button_pressed:
 			final_weight += 0.5
 		emit_signal("set_recorded", current_exercise.name, final_weight, rep_count)
+		
+		# Update previous values and set first_set flag to false
+		previous_weight = final_weight
+		previous_reps = rep_count
+		is_first_set = false
+		
+		# Reset rep count and weight for the next set
 		rep_count = 1
 		weight = current_exercise.starting_weight
 		update_rep_display()
