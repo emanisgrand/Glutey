@@ -4,14 +4,14 @@ extends RefCounted
 var name: String
 var primary_muscle_group: String
 var equipment_type: String
-var weight_increments: Array[float]
+var weight_increments: Array
 var has_mod_plate: bool
 var is_reverse_progression: bool
 var starting_weight: float
 var max_weight: float
 
 func _init(p_name: String, p_muscle_group: String, p_equipment: String, 
-		   p_increments: Array[float], p_has_mod: bool = false, 
+		   p_increments: Array, p_has_mod: bool = false, 
 		   p_reverse: bool = false, p_start: float = 0, p_max: float = 100):
 	name = p_name
 	primary_muscle_group = p_muscle_group

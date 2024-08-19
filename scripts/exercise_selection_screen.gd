@@ -22,10 +22,10 @@ func _populate_exercise_grid():
 		var card = exercise_card_scene.instantiate()
 		var label = card.get_node("ExerciseLabel")
 		if label:
-			label.text = exercise
+			label.text = exercise.name
 		else:
 			push_error("ExerciseLabel not found in card.")
-		card.connect("pressed", _on_exercise_card_pressed.bind(exercise))
+		card.connect("pressed", _on_exercise_card_pressed.bind(exercise.name))
 		grid_container.add_child(card)
 
 func _on_exercise_card_pressed(exercise_name: String):

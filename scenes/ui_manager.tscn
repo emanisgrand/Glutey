@@ -93,12 +93,13 @@ visible = false
 [node name="SetEntryScreen" parent="." instance=ExtResource("4_1v1ci")]
 visible = false
 
+[node name="ActiveWorkoutScreen" parent="." instance=ExtResource("6_000e2")]
+
 [node name="CalendarView" parent="." instance=ExtResource("3_t2pkh")]
 visible = false
 
-[node name="ActiveWorkoutScreen" parent="." instance=ExtResource("6_000e2")]
-
 [node name="DebugPanel" parent="." instance=ExtResource("7_g8dsp")]
+visible = false
 custom_minimum_size = Vector2(185.225, 0)
 anchors_preset = 1
 anchor_left = 1.0

@@ -30,7 +30,7 @@ func _connect_signals():
 	calendar_view.connect("day_selected", _on_day_selected)
 	# Connect other signals here
 
-func _on_day_selected(date: Dictionary, is_recorded: bool):
+func _on_day_selected(_date: Dictionary, is_recorded: bool):
 	if is_recorded:
 		is_view_only_mode = true
 		if active_workout_screen:
@@ -56,9 +56,11 @@ func _on_end_day_button_pressed():
 	var current_date = Time.get_date_dict_from_system()
 	emit_signal("day_ended", current_date)
 	DataManager.record_workout_day(current_date)
-	change_screen("calendar")
 	if calendar_view:
 		calendar_view.update_calendar()
+		change_screen("calendar")
+	else:
+		print("Calendar view not available")
 
 func _on_advance_day_pressed():
 	current_date = Time.get_date_dict_from_unix_time(Time.get_unix_time_from_datetime_dict(current_date) + 86400)
@@ -98,7 +100,7 @@ func _on_exercise_selected(exercise_name: String):
 func change_screen(screen_name: String):
 	if current_screen:
 		current_screen.visible = false
-	
+
 	match screen_name:
 		"calendar":
 			current_screen = calendar_view
@@ -109,12 +111,14 @@ func change_screen(screen_name: String):
 		"set_entry":
 			current_screen = set_entry_screen
 		_:
-			print("Invalid screen name", screen_name)
+			print("Invalid screen name: ", screen_name)
 			return
+
 	if current_screen:
 		current_screen.visible = true
 	else: 
 		print("Screen not found: ", screen_name)
+
 
 func _on_toggle_console_pressed():
 	console.visible = !console.visible
