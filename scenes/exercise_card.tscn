@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://byajgkha7kt2e"]
 
 [ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="1_0vnm8"]
-[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="2_2ds2g"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/icons/Box02.png" id="2_2ds2g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_74oh5"]
 line_spacing = -6.22

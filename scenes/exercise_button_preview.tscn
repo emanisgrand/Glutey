@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1vrg5wbfvhbd"]
 
 [ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="1_3flfn"]
-[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="1_gaeds"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/icons/Box02.png" id="1_gaeds"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_07d22"]
 font_size = 46

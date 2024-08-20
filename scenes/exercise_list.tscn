@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://jj0svgd8qt08"]
 
-[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="1_o6nww"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/icons/Box02.png" id="1_o6nww"]
 
 [sub_resource type="Theme" id="Theme_52x1e"]
 default_font_size = 15

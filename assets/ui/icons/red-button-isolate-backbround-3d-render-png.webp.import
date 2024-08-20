@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7cjbnwvo2itx"
-path="res://.godot/imported/glutey00.png-d4566ca1a752f82afa4cebbd1103cafa.ctex"
+uid="uid://cjniayudda0bx"
+path="res://.godot/imported/red-button-isolate-backbround-3d-render-png.webp-2bf5f63ae6a9d04b62894cca8b63708c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/glutey00.png"
-dest_files=["res://.godot/imported/glutey00.png-d4566ca1a752f82afa4cebbd1103cafa.ctex"]
+source_file="res://assets/ui/icons/red-button-isolate-backbround-3d-render-png.webp"
+dest_files=["res://.godot/imported/red-button-isolate-backbround-3d-render-png.webp-2bf5f63ae6a9d04b62894cca8b63708c.ctex"]
 
 [params]
 

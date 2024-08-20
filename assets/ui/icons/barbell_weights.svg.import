@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eq3lmrn6yukt"
-path="res://.godot/imported/reps-icon.svg-6298cd74f41d474acd593e3a203a8f84.ctex"
+uid="uid://ikof8solxbp4"
+path="res://.godot/imported/barbell_weights.svg-66ef4580137e429f09d7c0e4acedb452.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/reps-icon.svg"
-dest_files=["res://.godot/imported/reps-icon.svg-6298cd74f41d474acd593e3a203a8f84.ctex"]
+source_file="res://assets/ui/icons/barbell_weights.svg"
+dest_files=["res://.godot/imported/barbell_weights.svg-66ef4580137e429f09d7c0e4acedb452.ctex"]
 
 [params]
 

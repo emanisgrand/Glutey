@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bghqs5xlixjys"]
 
 [ext_resource type="Script" path="res://scripts/ui_manager.gd" id="1_tuiec"]
-[ext_resource type="Texture2D" uid="uid://fqfsc6nrykcx" path="res://assets/textures/ui/gear.png" id="2_aluqm"]
+[ext_resource type="Texture2D" uid="uid://fqfsc6nrykcx" path="res://assets/ui/icons/gear.png" id="2_aluqm"]
 [ext_resource type="PackedScene" uid="uid://bmk558ppj38h2" path="res://scenes/calendar.tscn" id="3_t2pkh"]
 [ext_resource type="PackedScene" uid="uid://b4k76udx15n7k" path="res://scenes/set_entry_screen.tscn" id="4_1v1ci"]
 [ext_resource type="PackedScene" uid="uid://cjjkwigtmc7sx" path="res://scenes/exercise_selection_screen.tscn" id="5_evod1"]

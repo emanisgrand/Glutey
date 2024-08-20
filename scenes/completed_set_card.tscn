@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvg3ua7c65lkr"]
 
 [ext_resource type="Script" path="res://scripts/completed_set_card.gd" id="2_13gy5"]
-[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="2_fb0fg"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/icons/Box02.png" id="2_fb0fg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bjqis"]
 font_size = 26

@@ -30,9 +30,9 @@ func _load_exercises():
 
 	# Barbell exercises
 	var barbell_plates = [2.5, 5.0, 10.0, 15.0, 25.0, 35.0, 45.0]
-	exercises["BBB Squats"] = Exercise.new("BBB Squats", "LEG", "barbell", barbell_plates)
-	exercises["Deadlift"] = Exercise.new("Deadlift", "LEG", "barbell", barbell_plates)
-	exercises["M. Deadlift"] = Exercise.new("M. Deadlift", "LEG", "barbell", barbell_plates)
+	exercises["BBB Squats"] = Exercise.new("BBB Squats", "LEG", "barbell", [], false, false, 45.0, 0, true, barbell_plates)
+	exercises["Deadlift"] = Exercise.new("Deadlift", "LEG", "barbell", [], false, false, 45.0, 0, true, barbell_plates)
+	exercises["M. Deadlift"] = Exercise.new("M. Deadlift", "LEG", "barbell", [], false, false, 45.0, 0, true, barbell_plates)
 
 func get_exercise(exercise_name: String) -> Exercise:
 	return exercises.get(exercise_name)

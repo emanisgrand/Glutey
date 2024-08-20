@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ho3uglg4h38r"
-path="res://.godot/imported/dumbell_weights.svg-ac664cf2798b968fb92f47f837ae4325.ctex"
+uid="uid://dih62sh4pgbra"
+path="res://.godot/imported/plus-icon.svg-ca7c0c76452a33a2d0d36dfec42408ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/dumbell_weights.svg"
-dest_files=["res://.godot/imported/dumbell_weights.svg-ac664cf2798b968fb92f47f837ae4325.ctex"]
+source_file="res://assets/ui/icons/plus-icon.svg"
+dest_files=["res://.godot/imported/plus-icon.svg-ca7c0c76452a33a2d0d36dfec42408ee.ctex"]
 
 [params]
 

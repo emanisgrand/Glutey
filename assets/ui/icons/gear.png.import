@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1m6h0y1erdl5"
-path="res://.godot/imported/glutey00.svg-c767e9997ce1284b26ac57bba276e6d3.ctex"
+uid="uid://fqfsc6nrykcx"
+path="res://.godot/imported/gear.png-4aa4718099f076f2f0926e870f29c2f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/glutey00.svg"
-dest_files=["res://.godot/imported/glutey00.svg-c767e9997ce1284b26ac57bba276e6d3.ctex"]
+source_file="res://assets/ui/icons/gear.png"
+dest_files=["res://.godot/imported/gear.png-4aa4718099f076f2f0926e870f29c2f2.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

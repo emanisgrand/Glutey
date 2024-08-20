@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/active_workout_screen.gd" id="1_x7sal"]
 [ext_resource type="PackedScene" uid="uid://c8hv8w72qaxyl" path="res://scenes/muscle_group_avatar.tscn" id="1_ywvpe"]
-[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/textures/ui/Box02.png" id="3_io47l"]
-[ext_resource type="Texture2D" uid="uid://cjniayudda0bx" path="res://assets/textures/ui/red-button-isolate-backbround-3d-render-png.webp" id="4_4ibfn"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/icons/Box02.png" id="3_io47l"]
+[ext_resource type="Texture2D" uid="uid://cjniayudda0bx" path="res://assets/ui/icons/red-button-isolate-backbround-3d-render-png.webp" id="4_4ibfn"]
 [ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="4_s2rke"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_t61od"]

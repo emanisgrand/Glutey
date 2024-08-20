@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb78rbcv21j05"
-path="res://.godot/imported/Box02.png-07b5c5471424be8f5baec10f283d7e9d.ctex"
+uid="uid://c1cv2un58pcea"
+path="res://.godot/imported/cable_weights.svg-73947bcb49c5eb62e5c716546d217367.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/Box02.png"
-dest_files=["res://.godot/imported/Box02.png-07b5c5471424be8f5baec10f283d7e9d.ctex"]
+source_file="res://assets/ui/icons/cable_weights.svg"
+dest_files=["res://.godot/imported/cable_weights.svg-73947bcb49c5eb62e5c716546d217367.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
