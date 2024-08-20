@@ -1,7 +1,5 @@
 extends Node
 
-signal screen_changed(new_screen_name)
-
 var current_screen_name: String = ""
 
 func add_log_msg(log_str: String):

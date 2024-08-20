@@ -1,6 +1,6 @@
 # calendar.gd
 extends Control
-
+@warning_ignore("unused_signal")
 signal day_selected(date: Dictionary, is_recorded: bool)
 
 const DAYS_IN_WEEK = 7

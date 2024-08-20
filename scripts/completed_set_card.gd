@@ -1,5 +1,6 @@
 extends TextureButton
 
+@warning_ignore("unused_signal")
 signal set_selected(exercise: String, set_number: int, weight: int, reps: int)
 
 @onready var exercise_label = $ExerciseLabel

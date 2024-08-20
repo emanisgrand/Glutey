@@ -34,8 +34,8 @@ func _load_exercises():
 	exercises["Deadlift"] = Exercise.new("Deadlift", "LEG", "barbell", barbell_plates)
 	exercises["M. Deadlift"] = Exercise.new("M. Deadlift", "LEG", "barbell", barbell_plates)
 
-func get_exercise(name: String) -> Exercise:
-	return exercises.get(name)
+func get_exercise(exercise_name: String) -> Exercise:
+	return exercises.get(exercise_name)
 
 func get_exercises_for_muscle_group(muscle_group: String) -> Array:
 	return exercises.values().filter(func(ex): return ex.primary_muscle_group == muscle_group)
@@ -70,19 +70,19 @@ func end_workout():
 
 func save_data():
 	var save_file = FileAccess.open("user://workout_data.save", FileAccess.WRITE)
-	var save_data = {
+	var data_to_save = {
 		"recorded_workout_days": recorded_workout_days,
 		"current_workout": current_workout
 	}
-	save_file.store_var(save_data)
+	save_file.store_var(data_to_save)
 	save_file.close()
 
 func load_data():
 	if FileAccess.file_exists("user://workout_data.save"):
 		var save_file = FileAccess.open("user://workout_data.save", FileAccess.READ)
-		var save_data = save_file.get_var()
-		recorded_workout_days = save_data.get("recorded_workout_days", {})
-		current_workout = save_data.get("current_workout", {})
+		var data_to_load = save_file.get_var()
+		recorded_workout_days = data_to_load.get("recorded_workout_days", {})
+		current_workout = data_to_load.get("current_workout", {})
 		save_file.close()
 	else:
 		recorded_workout_days = {}

@@ -1,7 +1,5 @@
 extends TextureButton
 
-signal exercise_selected(exercise_namee:String)
-
 @onready var exercise_label = $ExerciseLabel
 
 func _ready():

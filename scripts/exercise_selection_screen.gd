@@ -1,5 +1,6 @@
 extends Control
 
+@warning_ignore("unused_signal")
 signal exercise_selected(exercise_name: String)
 
 @onready var grid_container = $ExerciseListGrid

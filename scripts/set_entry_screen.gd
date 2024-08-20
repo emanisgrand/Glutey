@@ -1,5 +1,6 @@
 extends Control
 
+@warning_ignore("unused_signal")
 signal set_recorded(exercise: String, weight: float, reps: int)
 
 @onready var rep_label = $RepControl/RepLabel
@@ -64,7 +65,6 @@ func set_exercise(exercise_name: String, set_weight: float = 0.0, set_reps: int 
 		push_error("Exercise not found: " + exercise_name)
 
 func adjust_value(current: float, is_increase: bool, get_next_func: Callable) -> float:
-	var old_value = current
 	current = get_next_func.call(current, is_increase)
 	if DataManager.get_current_set_number(current_exercise.name) > 1:
 		var label = weight_label if get_next_func == current_exercise.get_next_weight else rep_label

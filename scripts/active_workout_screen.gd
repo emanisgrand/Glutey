@@ -8,7 +8,9 @@ extends Control
 
 var is_view_only = false
 
+@warning_ignore("unused_signal")
 signal muscle_group_selected(group: String)
+@warning_ignore("unused_signal")
 signal existing_set_selected(exercise: String, set_number: int, weight: int, reps: int)
 
 var exercise_cards: Dictionary = {}
