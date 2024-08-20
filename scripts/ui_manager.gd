@@ -15,6 +15,7 @@ var current_exercise = ""
 var current_date = Time.get_date_dict_from_system()
 var is_view_only_mode = false
 
+
 func _ready():
 	console.visible = false
 	_connect_signals()
