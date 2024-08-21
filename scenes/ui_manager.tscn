@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bghqs5xlixjys"]
+[gd_scene load_steps=10 format=3 uid="uid://bghqs5xlixjys"]
 
 [ext_resource type="Script" path="res://scripts/ui_manager.gd" id="1_tuiec"]
 [ext_resource type="Texture2D" uid="uid://fqfsc6nrykcx" path="res://assets/ui/icons/gear.png" id="2_aluqm"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjkwigtmc7sx" path="res://scenes/exercise_selection_screen.tscn" id="5_evod1"]
 [ext_resource type="PackedScene" uid="uid://co7tio1bdib6m" path="res://scenes/active_workout_screen.tscn" id="6_000e2"]
 [ext_resource type="PackedScene" uid="uid://ylaad76pmwff" path="res://scenes/debug_panel.tscn" id="7_g8dsp"]
+[ext_resource type="Script" path="res://scripts/debug_panel.gd" id="8_msp2k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e7m6f"]
 font_color = Color(0, 0.832885, 0, 1)
@@ -99,7 +100,6 @@ visible = false
 visible = false
 
 [node name="DebugPanel" parent="." instance=ExtResource("7_g8dsp")]
-visible = false
 custom_minimum_size = Vector2(185.225, 0)
 anchors_preset = 1
 anchor_left = 1.0
@@ -107,6 +107,7 @@ anchor_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 1
 size_flags_horizontal = 4
+script = ExtResource("8_msp2k")
 
 [connection signal="pressed" from="Debug/ToggleConsole" to="." method="_on_toggle_console_pressed"]
 

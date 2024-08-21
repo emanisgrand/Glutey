@@ -13,7 +13,6 @@ signal day_ended(date: Dictionary)
 var current_screen = null
 var current_muscle_group = ""
 var current_exercise = ""
-var current_date = Time.get_date_dict_from_system()
 var is_view_only_mode = false
 
 func _ready():
@@ -21,6 +20,7 @@ func _ready():
 	_connect_signals()
 	_connect_end_day_button()
 	_setup_debug_tools()
+	DataManager.set_current_date(Time.get_date_dict_from_system())
 	change_screen("active_workout")
 
 func _connect_signals():
@@ -29,14 +29,14 @@ func _connect_signals():
 	exercise_selection_screen.connect("exercise_selected", _on_exercise_selected)
 	active_workout_screen.connect("existing_set_selected", _on_existing_set_selected)
 	calendar_view.connect("day_selected", _on_day_selected)
-	# Connect other signals here
 
-func _on_day_selected(_date: Dictionary, is_recorded: bool):
+func _on_day_selected(date: Dictionary, is_recorded: bool):
 	if is_recorded:
 		is_view_only_mode = true
+		DataManager.set_current_date(date)
 		if active_workout_screen:
 			active_workout_screen.set_view_only_mode(true)
-	# TODO: Load the workout data for the selected date
+			active_workout_screen.load_workout(DataManager.get_workout_for_date(date))
 		change_screen("active_workout")
 	else:
 		is_view_only_mode = false
@@ -54,9 +54,9 @@ func _connect_end_day_button():
 		print("EndDayButton not found")
 
 func _on_end_day_button_pressed():
-	current_date = Time.get_date_dict_from_system()
+	var current_date = DataManager.current_date
 	emit_signal("day_ended", current_date)
-	DataManager.record_workout_day(current_date)
+	DataManager.save_data()
 	if calendar_view:
 		calendar_view.update_calendar()
 		change_screen("calendar")
@@ -64,32 +64,31 @@ func _on_end_day_button_pressed():
 		print("Calendar view not available")
 
 func _on_advance_day_pressed():
-	current_date = Time.get_date_dict_from_unix_time(Time.get_unix_time_from_datetime_dict(current_date) + 86400)
+	var next_day = Time.get_unix_time_from_datetime_dict(DataManager.current_date) + 86400
+	var new_date = Time.get_date_dict_from_unix_time(next_day)
+	DataManager.set_current_date(new_date)
 	if calendar_view:
-		calendar_view.set_date(current_date)
-	print("Advanced to date: ", current_date)
+		calendar_view.set_date(new_date)
+	print("Advanced to date: ", new_date)
 	
 func _on_record_workout_pressed():
-	DataManager.record_workout_day(current_date)
+	# This now just ensures there's a workout for the current day
+	DataManager.set_current_date(DataManager.current_date)
 	calendar_view.update_calendar()
-	print("Recorded workout for date: ", current_date)
+	print("Ensured workout for date: ", DataManager.current_date)
 
 func _on_muscle_group_selected(group: String):
 	current_muscle_group = group
 	exercise_selection_screen.set_muscle_group(group)
 	change_screen("exercise_selection")
 
-func _on_set_recorded(exercise: String, weight: int, reps: int):
+func _on_set_recorded(exercise: String, weight: float, reps: int):
+	DataManager.record_set(exercise, weight, reps)
 	active_workout_screen.add_set(exercise, weight, reps)
 	change_screen("active_workout")
 
-func _on_existing_set_selected(exercise: String, _set_number: int, weight: int, reps: int):
+func _on_existing_set_selected(exercise: String, _set_number: int, weight: float, reps: int):
 	set_entry_screen.set_exercise(exercise, weight, reps)
-	change_screen("set_entry")
-
-func _on_exercise_card_pressed(exercise_name: String):
-	set_entry_screen.set_exercise(exercise_name)
-	active_workout_screen.set_current_exercise(exercise_name)
 	change_screen("set_entry")
 
 func _on_exercise_selected(exercise_name: String):
@@ -119,7 +118,6 @@ func change_screen(screen_name: String):
 		current_screen.visible = true
 	else: 
 		print("Screen not found: ", screen_name)
-
 
 func _on_toggle_console_pressed():
 	console.visible = !console.visible

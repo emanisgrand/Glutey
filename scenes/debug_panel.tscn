@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://ylaad76pmwff"]
+[gd_scene load_steps=2 format=3 uid="uid://ylaad76pmwff"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hybad"]
+line_spacing = 2.91
+font_size = 10
 
 [node name="DebugPanel" type="Control"]
 layout_mode = 3
@@ -21,6 +25,10 @@ text = "Advance Day"
 layout_mode = 2
 text = "Record Workout"
 
+[node name="ClearDataButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Clear Data"
+
 [node name="CurrentDateLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Current Date:"
+label_settings = SubResource("LabelSettings_hybad")
