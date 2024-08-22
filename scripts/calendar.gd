@@ -11,12 +11,24 @@ var first_day_of_month = 0
 @onready var year_label = $YearLabel
 @onready var month_label = $MonthLabel
 @onready var grid_container = $GridContainer
+@onready var return_to_active_workout: TextureButton = $ReturnToActiveWorkout
 
 var is_test_environment = false
+var cached_workout_data = {}
 
 func _ready():
+	preload_workout_data()
 	if not is_test_environment:
 		update_calendar()
+	return_to_active_workout.connect("pressed", _on_return_to_active_workout_pressed)
+
+func preload_workout_data():
+	var current_year = Time.get_date_dict_from_system().year
+	for month in range(1, 13):
+		for day in range(1, 32):
+			var date = {"year": current_year, "month": month, "day": day}
+			var date_key = DataManager._get_date_key(date)
+			cached_workout_data[date_key] = DataManager.is_workout_day_recorded(date)
 
 func set_test_environment(value: bool):
 	is_test_environment = value
@@ -27,9 +39,9 @@ func set_date(new_date: Dictionary):
 
 func update_calendar():
 	update_labels()
-	if not is_test_environment:
-		clear_grid()
-		populate_grid()
+	clear_grid()
+	populate_grid()
+	preload_workout_data()
 	calculate_month_details()
 
 func update_labels():
@@ -107,4 +119,9 @@ func _on_day_pressed(day, is_recorded):
 		"month": current_date.month,
 		"day": day
 	}
-	emit_signal("day_selected", selected_date, is_recorded)
+	if is_recorded:
+		emit_signal("day_selected", selected_date, true)
+
+func _on_return_to_active_workout_pressed():
+	# Signal to UI manager to return to the active workout
+	get_parent().change_screen("workout")

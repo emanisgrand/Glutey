@@ -22,6 +22,7 @@ func _ready():
 
 func set_interactive(interactive: bool):
 	disabled = !interactive
+	modulate = Color(1, 1, 1, 1) if interactive else Color(0.7, 0.7, 0.7, 1)
 
 func set_exercise(exercise_name: String):
 	exercise = exercise_name

@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://co7tio1bdib6m"]
+[gd_scene load_steps=10 format=3 uid="uid://co7tio1bdib6m"]
 
-[ext_resource type="Script" path="res://scripts/active_workout_screen.gd" id="1_x7sal"]
+[ext_resource type="Script" path="res://scripts/workout_screen.gd" id="1_x7sal"]
 [ext_resource type="PackedScene" uid="uid://c8hv8w72qaxyl" path="res://scenes/muscle_group_avatar.tscn" id="1_ywvpe"]
-[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/icons/Box02.png" id="3_io47l"]
+[ext_resource type="Texture2D" uid="uid://cb78rbcv21j05" path="res://assets/ui/textures/Box02.png" id="3_io47l"]
 [ext_resource type="Texture2D" uid="uid://cjniayudda0bx" path="res://assets/ui/icons/red-button-isolate-backbround-3d-render-png.webp" id="4_4ibfn"]
 [ext_resource type="PackedScene" uid="uid://byaorhprlmm6m" path="res://scenes/screen_button.tscn" id="4_s2rke"]
+[ext_resource type="Texture2D" uid="uid://bdkdg0oqypqsw" path="res://assets/ui/icons/calendar.svg" id="6_ogfaq"]
+[ext_resource type="Texture2D" uid="uid://c53e4avjtun4w" path="res://assets/ui/icons/pressed-red-button-isolate-backbround-3d-render-.png" id="6_t1gth"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_t61od"]
 font_size = 48
@@ -14,7 +16,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 51
 font_color = Color(0, 0, 0, 1)
 
-[node name="ActiveWorkoutScreen" type="Control"]
+[node name="WorkoutScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,5 +166,16 @@ offset_right = 107.0
 offset_bottom = -6.0
 grow_vertical = 0
 texture_normal = ExtResource("4_4ibfn")
+texture_pressed = ExtResource("6_t1gth")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CalendarViewButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 868.0
+offset_right = 516.0
+offset_bottom = 949.0
+texture_normal = ExtResource("6_ogfaq")
 ignore_texture_size = true
 stretch_mode = 0

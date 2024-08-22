@@ -24,7 +24,7 @@ class Workout:
 class Set:
 	var weight: float
 	var reps: int
-	var timestamp: int
+	var timestamp: float
 
 	func _init(p_weight: float, p_reps: int):
 		weight = p_weight
@@ -104,11 +104,11 @@ func clear_data():
 	save_data()
 
 func save_data():
-	var save_data = {}
+	var session_save_data = {}
 	for date_key in sessions:
-		save_data[date_key] = _session_to_dict(sessions[date_key])
+		session_save_data[date_key] = _session_to_dict(sessions[date_key])
 	var file = FileAccess.open("user://workout_data.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify(save_data, "  ", true))  # Use 2 spaces for indentation and sort keys
+	file.store_string(JSON.stringify(session_save_data, "  ", true))
 	file.close()
 
 func load_data():
@@ -150,12 +150,12 @@ func load_data():
 
 func _date_key_to_dict(date_key: String) -> Dictionary:
 	var parts = date_key.split("-")
-	var current_date = Time.get_date_dict_from_system()
+	var system_date = Time.get_date_dict_from_system()
 	
 	return {
-		"year": int(parts[0]) if parts.size() > 0 else current_date.year,
-		"month": int(parts[1]) if parts.size() > 1 else current_date.month,
-		"day": int(parts[2]) if parts.size() > 2 else current_date.day
+		"year": int(parts[0]) if parts.size() > 0 else system_date.year,
+		"month": int(parts[1]) if parts.size() > 1 else system_date.month,
+		"day": int(parts[2]) if parts.size() > 2 else system_date.day
 	}
 
 func _get_date_key(date: Dictionary) -> String:
@@ -164,7 +164,7 @@ func _get_date_key(date: Dictionary) -> String:
 func _session_to_dict(session: Session) -> Dictionary:
 	var workout_dict = {}
 	for exercise in session.workout.exercises:
-		workout_dict[exercise] = session.workout.exercises[exercise].map(func(set): return {"weight": set.weight, "reps": set.reps, "timestamp": set.timestamp})
+		workout_dict[exercise] = session.workout.exercises[exercise].map(func(workout_set): return {"weight": workout_set.weight, "reps": workout_set.reps, "timestamp": workout_set.timestamp})
 	return {
 		"date": _get_date_key(session.date),  # Save date as a string
 		"workout": workout_dict

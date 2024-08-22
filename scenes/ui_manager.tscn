@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bghqs5xlixjys"]
 
 [ext_resource type="Script" path="res://scripts/ui_manager.gd" id="1_tuiec"]
-[ext_resource type="Texture2D" uid="uid://fqfsc6nrykcx" path="res://assets/ui/icons/gear.png" id="2_aluqm"]
+[ext_resource type="Texture2D" uid="uid://fqfsc6nrykcx" path="res://assets/ui/textures/gear.png" id="2_aluqm"]
 [ext_resource type="PackedScene" uid="uid://bmk558ppj38h2" path="res://scenes/calendar.tscn" id="3_t2pkh"]
 [ext_resource type="PackedScene" uid="uid://b4k76udx15n7k" path="res://scenes/set_entry_screen.tscn" id="4_1v1ci"]
 [ext_resource type="PackedScene" uid="uid://cjjkwigtmc7sx" path="res://scenes/exercise_selection_screen.tscn" id="5_evod1"]
-[ext_resource type="PackedScene" uid="uid://co7tio1bdib6m" path="res://scenes/active_workout_screen.tscn" id="6_000e2"]
+[ext_resource type="PackedScene" uid="uid://co7tio1bdib6m" path="res://scenes/workout_screen.tscn" id="6_000e2"]
 [ext_resource type="PackedScene" uid="uid://ylaad76pmwff" path="res://scenes/debug_panel.tscn" id="7_g8dsp"]
 [ext_resource type="Script" path="res://scripts/debug_panel.gd" id="8_msp2k"]
 
@@ -94,17 +94,18 @@ visible = false
 [node name="SetEntryScreen" parent="." instance=ExtResource("4_1v1ci")]
 visible = false
 
-[node name="ActiveWorkoutScreen" parent="." instance=ExtResource("6_000e2")]
+[node name="WorkoutScreen" parent="." instance=ExtResource("6_000e2")]
 
 [node name="CalendarView" parent="." instance=ExtResource("3_t2pkh")]
 visible = false
 
 [node name="DebugPanel" parent="." instance=ExtResource("7_g8dsp")]
 custom_minimum_size = Vector2(185.225, 0)
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 0
+anchor_right = 0.0
 anchor_bottom = 0.0
-grow_horizontal = 0
+offset_right = 185.225
+grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 4
 script = ExtResource("8_msp2k")

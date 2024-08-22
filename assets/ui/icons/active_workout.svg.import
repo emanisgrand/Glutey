@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fqfsc6nrykcx"
-path="res://.godot/imported/gear.png-4aa4718099f076f2f0926e870f29c2f2.ctex"
+uid="uid://bwore7eanind7"
+path="res://.godot/imported/active_workout.svg-add149a6afe3b1b2927a36700033eeef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/icons/gear.png"
-dest_files=["res://.godot/imported/gear.png-4aa4718099f076f2f0926e870f29c2f2.ctex"]
+source_file="res://assets/ui/icons/active_workout.svg"
+dest_files=["res://.godot/imported/active_workout.svg-add149a6afe3b1b2927a36700033eeef.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
