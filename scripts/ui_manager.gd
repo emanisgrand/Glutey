@@ -10,6 +10,7 @@ signal day_ended(date: Dictionary)
 @onready var console = $Debug/ConsoleLog
 @onready var debug_panel = $DebugPanel
 
+var screen_stack = []
 var current_screen = null
 var current_muscle_group = ""
 var current_exercise = ""
@@ -18,6 +19,8 @@ var has_active_workout = false
 
 var today_date: Dictionary
 var active_workout_date: Dictionary
+
+var temp_workout = null
 
 func _ready():
 	today_date = Time.get_date_dict_from_system()
@@ -28,6 +31,51 @@ func _ready():
 	_setup_debug_tools()
 	DataManager.set_current_date(Time.get_date_dict_from_system())
 	change_screen("workout")
+	get_tree().set_auto_accept_quit(false)
+
+func _notification(what):
+	match what:
+		NOTIFICATION_APPLICATION_FOCUS_OUT:
+			DataManager.save_data()
+		NOTIFICATION_APPLICATION_FOCUS_IN:
+			DataManager.load_data()
+			update_ui()
+		NOTIFICATION_WM_CLOSE_REQUEST:
+			DataManager.save_data()
+			get_tree().quit()
+		NOTIFICATION_WM_GO_BACK_REQUEST:
+			_handle_back_button()
+			get_viewport().set_input_as_handled()
+
+func _handle_back_button():
+	if screen_stack.size() > 0:
+		if go_back():
+			return
+	# We're at the root screen or couldn't go back, so let's show a confirmation dialog
+	_show_exit_confirmation()
+
+func _input(event):
+	if (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE) or \
+	   (event is InputEventJoypadButton and event.pressed and event.button_index == JOY_BUTTON_BACK):
+		_handle_back_button()
+		get_viewport().set_input_as_handled()
+
+func _show_exit_confirmation():
+	var dialog = ConfirmationDialog.new()
+	dialog.dialog_text = "Do you want to exit 👽Glutey?"
+	dialog.get_ok_button().text = "Exit"
+	dialog.get_cancel_button().text = "Stay"
+	dialog.confirmed.connect(_on_exit_confirmed)
+	dialog.canceled.connect(_on_exit_canceled)
+	add_child(dialog)
+	dialog.popup_centered()
+
+func _on_exit_confirmed():
+	DataManager.save_data()
+	get_tree().quit()
+
+func _on_exit_canceled():
+	get_tree().set_auto_accept_quit(true)
 
 func _connect_signals():
 	workout_screen.connect("muscle_group_selected", _on_muscle_group_selected)
@@ -87,7 +135,7 @@ func _on_muscle_group_selected(group: String):
 func _on_set_recorded(exercise: String, weight: float, reps: int):
 	DataManager.record_set(exercise, weight, reps)
 	workout_screen.add_set(exercise, weight, reps)
-	calendar_view.update_calendar()  # Refresh the calendar
+	calendar_view.update_calendar()
 	change_screen("workout")
 
 func _on_existing_set_selected(exercise: String, _set_number: int, weight: float, reps: int):
@@ -97,57 +145,70 @@ func _on_existing_set_selected(exercise: String, _set_number: int, weight: float
 func _on_exercise_selected(exercise_name: String):
 	current_exercise = exercise_name
 	set_entry_screen.set_exercise(exercise_name)
-	workout_screen.set_current_exercise(exercise_name)
 	change_screen("set_entry")
 
 func change_screen(screen_name: String):
-	if current_screen:
-		current_screen.visible = false
-
+	var new_screen = null
+	
+	# Use the switch statement to determine the new screen
 	match screen_name:
 		"calendar":
-			current_screen = calendar_view
+			new_screen = calendar_view
 			if calendar_view.has_method("set_return_to_active_workout_visible"):
 				calendar_view.set_return_to_active_workout_visible(has_active_workout)
 		"workout":
-			current_screen = workout_screen
+			new_screen = workout_screen
 			workout_screen.update_ui()
 		"exercise_selection":
-			current_screen = exercise_selection_screen
+			new_screen = exercise_selection_screen
 		"set_entry":
-			current_screen = set_entry_screen
+			new_screen = set_entry_screen
 		_:
 			print("Invalid screen name: ", screen_name)
 			return
-
-	if current_screen:
-		current_screen.visible = true
-	else:
+		
+	if new_screen == null:
 		print("Screen not found: ", screen_name)
+		return
+		
+	if new_screen == current_screen:
+		return  # We're already on this screen
+		
+	if current_screen:
+		current_screen.visible = false
+		# Only add to stack if we're not going back
+		if not screen_stack.is_empty() and new_screen != screen_stack.back():
+			screen_stack.push_back(current_screen)
+		elif screen_stack.is_empty():
+			screen_stack.push_back(current_screen)
+		
+	current_screen = new_screen
+	current_screen.visible = true
+
 func _on_toggle_console_pressed():
 	console.visible = !console.visible
 
 func _is_same_date(date1: Dictionary, date2: Dictionary) -> bool:
 	return date1.year == date2.year and date1.month == date2.month and date1.day == date2.day
 
-
 # Add this method for testing purposes
 func set_calendar_view(calendar):
 	calendar_view = calendar
 
 func switch_to_active_mode(date: Dictionary):
-	var system_date = Time.get_date_dict_from_system()
-	if _is_same_date(date, system_date):
-		active_workout_date = date
-		DataManager.set_current_date(date)
-		workout_screen.set_view_only_mode(false)
-		workout_screen.load_workout(DataManager.get_workout_for_date(date))
-		change_screen("workout")
-	else:
-		print("Cannot switch to active mode for past dates")
+	if !active_workout_date.is_empty():
+		# Save the current active workout before switching
+		DataManager.save_data()
+	
+	active_workout_date = date
+	DataManager.set_current_date(date)
+	workout_screen.set_view_only_mode(false)
+	workout_screen.load_workout(DataManager.get_workout_for_date(date))
+	change_screen("workout")
 
 func end_day():
 	DataManager.save_data()
+	clear_temp_workout()
 	calendar_view.update_calendar()
 	change_screen("calendar")
 
@@ -165,3 +226,31 @@ func update_workout_state():
 	
 	workout_screen.load_workout(DataManager.get_workout_for_date(current_date))
 	change_screen("workout")
+
+func store_temp_workout(workout: DataManager.Workout):
+	temp_workout = workout
+	has_active_workout = true
+
+func clear_temp_workout():
+	temp_workout = null
+	has_active_workout = false
+
+func go_back() -> bool:
+	if screen_stack.size() > 0:
+		current_screen.visible = false
+		current_screen = screen_stack.pop_back()
+		current_screen.visible = true
+		return true
+	else:
+		print("No previous screen to go back to")
+		return false
+
+func restore_temp_workout():
+	if temp_workout:
+		workout_screen.load_workout(temp_workout)
+		temp_workout = null
+
+func update_ui():
+	# Refresh the current screen's UI
+	if current_screen and current_screen.has_method("update_ui"):
+		current_screen.update_ui()

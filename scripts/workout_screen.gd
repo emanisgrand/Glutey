@@ -54,7 +54,7 @@ func add_set(exercise: String, weight: float, reps: int):
 	if not is_view_only_mode:
 		if not exercise_cards.has(exercise):
 			set_current_exercise(exercise)
-	
+
 		var card = exercise_cards[exercise]
 		var set_number = card.get_last_set_number() + 1
 		card.add_set(set_number, weight, reps)
@@ -98,7 +98,18 @@ func update_ui():
 	calendar_view_button.visible = true
 
 func _on_calendar_view_button_pressed():
-	# Signal to UI manager to switch to calendar view
+	# Create a new Workout object
+	var current_workout = DataManager.Workout.new()
+	
+	for exercise_name in exercise_cards:
+		var sets_data = exercise_cards[exercise_name].get_sets_data()
+		for set_data in sets_data:
+			current_workout.add_set(exercise_name, set_data.weight, set_data.reps)
+	
+	# Store this in the UIManager
+	get_parent().store_temp_workout(current_workout)
+	
+	# Switch to calendar view
 	get_parent().change_screen("calendar")
 
 func _on_calendar_view_button_long_pressed():

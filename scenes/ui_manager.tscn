@@ -100,6 +100,7 @@ visible = false
 visible = false
 
 [node name="DebugPanel" parent="." instance=ExtResource("7_g8dsp")]
+visible = false
 custom_minimum_size = Vector2(185.225, 0)
 anchors_preset = 0
 anchor_right = 0.0

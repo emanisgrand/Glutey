@@ -49,3 +49,6 @@ func _on_pressed():
 
 func get_last_set_number() -> int:
 	return sets.size()
+
+func get_sets_data():
+	return sets
