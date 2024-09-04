@@ -116,38 +116,36 @@ func load_data():
 		var file = FileAccess.open("user://workout_data.json", FileAccess.READ)
 		var json_text = file.get_as_text()
 		file.close()
-		
-		var json = JSON.parse_string(json_text)
-		if json == null:
-			print("Failed to parse JSON data")
+
+		if json_text.is_empty():
+			print("Workout data file is empty. Starting with fresh data.")
+			return
+
+		var json = JSON.new()
+		var error = json.parse(json_text)
+		if error != OK:
+			print("JSON Parse Error: ", json.get_error_message(), " at line ", json.get_error_line())
 			print("Raw JSON content: ", json_text)
 			return
-		
-		if json is Dictionary:
-			for date_key in json:
-				if json[date_key] is Dictionary:
-					sessions[date_key] = _dict_to_session(json[date_key])
+
+		var data = json.get_data()
+		if data is Dictionary:
+			for date_key in data:
+				if data[date_key] is Dictionary:
+					sessions[date_key] = _dict_to_session(data[date_key])
 				else:
 					print("Warning: Invalid data format for date ", date_key)
-		elif json is Array:
-			for session_data in json:
-				if session_data is Dictionary and "date" in session_data:
-					var date_key = _get_date_key(session_data["date"])
-					sessions[date_key] = _dict_to_session(session_data)
-				else:
-					print("Warning: Invalid session data format")
 		else:
 			print("Warning: Unexpected JSON root structure")
 	else:
 		print("No saved data found")
-	
+
 	# Ensure we have an active session
 	if sessions.is_empty():
 		set_current_date(Time.get_date_dict_from_system())
 	else:
 		var latest_date = sessions.keys().max()
 		set_current_date(_date_key_to_dict(latest_date))
-
 func _date_key_to_dict(date_key: String) -> Dictionary:
 	var parts = date_key.split("-")
 	var system_date = Time.get_date_dict_from_system()

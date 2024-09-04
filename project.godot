@@ -8,18 +8,23 @@
 
 config_version=5
 
+[android]
+
+background_mode=2
+
 [application]
 
 config/name="ProgressiveOverload"
 run/main_scene="res://scenes/main.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://assets/ui/icons/glutey00.svg"
-config/quit_on_go_back=false
 
 [autoload]
 
 Util="*res://scripts/utility.gd"
 DataManager="*res://scripts/data_manager.gd"
+CalendarData="*res://esi/data/calendar_data.gd"
 
 [display]
 
@@ -41,8 +46,3 @@ pointing/emulate_touch_from_mouse=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-
-[android]
-
-background_mode=2
-

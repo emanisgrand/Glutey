@@ -10,6 +10,7 @@ extends Control
 
 
 var long_press_timer: Timer
+var long_press_occurred: bool = false
 var is_view_only_mode:bool = false
 var is_review_mode = false
 
@@ -125,21 +126,22 @@ func _on_calendar_view_button_long_pressed():
 		set_view_only_mode(true)
 		
 func _on_long_press_timer_timeout():
+	long_press_occurred = true
 	# Long press detected
 	if is_view_only_mode:
 		# Signal to UI manager to switch to active mode
 		get_parent().switch_to_active_mode(DataManager.current_date)
 	else:
-		# Maybe show a confirmation dialog for ending the day?
-		get_parent().end_day()
+		# Switch to view-only mode
+		set_view_only_mode(true)
 
 func _on_end_day_button_up():
-	if long_press_timer.is_stopped():
+	long_press_timer.stop()
+	if !long_press_occurred:
 		# Short press
 		if !is_view_only_mode:
 			get_parent().end_day()
-	else:
-		long_press_timer.stop()
 
 func _on_end_day_button_down():
+	long_press_occurred = false
 	long_press_timer.start(0.5)  # Adjust this value to change the duration for a long press
